@@ -2,6 +2,7 @@ package main;
 
 import model.ExpenseType;
 import model.Expenses;
+import model.Revenues;
 
 import java.util.*;
 
@@ -10,6 +11,7 @@ public class App {
     private static final Scanner input = new Scanner(System.in);
 
     private static final Set<Expenses> expenses = new HashSet<>();
+    private static final Set<Revenues> revenues = new HashSet<>();
 
 
     public static void main(String[] args) {
@@ -19,10 +21,10 @@ public class App {
     private static void menu() {
         System.out.println("\n------------ Personal finances --------");
         System.out.println("------- What do you want to do? -------");
-        System.out.println("|  1  | - Register a new expense");
-        System.out.println("|  2  | - Register a new revenue");
-        System.out.println("|  3  | - List expenses");
-        System.out.println("|  4  | - List revenues");
+        System.out.println("|  1  | - Register a new revenue");
+        System.out.println("|  2  | - Register a new expense");
+        System.out.println("|  3  | - List revenues");
+        System.out.println("|  4  | - List expenses");
         System.out.println("|  5  | - List all");
         System.out.println("|  0  | - Exit");
 
@@ -30,16 +32,16 @@ public class App {
 
         switch (action) {
             case 1:
-                registerExpense();
-                break;
-            case 2:
                 registerRevenue();
                 break;
+            case 2:
+                registerExpense();
+                break;
             case 3:
-                listExpenses();
+                listRevenues();
                 break;
             case 4:
-                listRevenues();
+                listExpenses();
                 break;
             case 5:
                 listAll();
@@ -79,9 +81,11 @@ public class App {
         boolean isValidValue = false;
         while (!isValidValue) {
             try {
-                System.out.print("Expense value: ");
+                System.out.print("Expense value: US$");
                 value = input.nextDouble();
-                isValidValue = true;
+                if(value > 0.0){
+                    isValidValue = true;
+                }
             } catch (InputMismatchException e) {
                 System.out.println("Error! Please enter only real values");
                 input.next();
@@ -113,7 +117,28 @@ public class App {
 
     private static void registerRevenue() {
         System.out.println("\n----- Register a new revenue -----");
+        System.out.print("Revenue description: ");
+        input.nextLine();
+        String description = input.nextLine();
 
+        double value = 0.0;
+        boolean isValidValue = false;
+        while(!isValidValue){
+            try{
+                System.out.print("Revenue value: US$");
+                value = input.nextDouble();
+                if(value > 0.0){
+                    isValidValue = true;
+                }
+            } catch (InputMismatchException e){
+                System.out.println("Error! Please enter only real values");
+                input.next();
+            }
+        }
+
+        revenues.add(new Revenues(description, value));
+        System.out.println("New revenue registered successfully!");
+        menu();
     }
 
     private static void listExpenses() {
@@ -126,17 +151,27 @@ public class App {
             System.out.println("Type: " + expense.getExpenseType());
             index++;
         }
-
+        menu();
     }
 
     private static void listRevenues() {
         System.out.println("\n----- List revenues -----");
-
+        int index = 0;
+        for(Revenues revenue : revenues){
+            System.out.println("#" + (index + 1) + " - ");
+            System.out.println("Description: " + revenue.getDescription());
+            System.out.println("Value: " + revenue.getValue());
+        }
+        menu();
     }
 
     private static void listAll() {
         System.out.println("\n----- List all -----");
-
+        System.out.println("Revenues: ");
+        listRevenues();
+        System.out.println("\nExpenses: ");
+        listExpenses();
+        menu();
     }
 
     private static void exitProgram() {
