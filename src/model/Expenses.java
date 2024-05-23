@@ -9,11 +9,6 @@ public class Expenses {
     private ExpenseType expenseType;
     private Double total;
 
-    TreeSet<Expenses> expensesList;
-
-    public Expenses() {
-    }
-
     public Expenses(String description, Double value, ExpenseType expenseType) {
         this.description = description;
         this.value = value;
