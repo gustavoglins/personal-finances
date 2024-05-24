@@ -15,5 +15,5 @@ How to use:
 2. Compile and run the program from the main class 'App'.
 3. Navigate through the menu using the number corresponding to the actions you want to perform.
 
-4. Contribution:
+Contribution:
 Feel free to contribute with improvements and new features. Fork the repository, create a branch for your changes, and submit a pull request.
