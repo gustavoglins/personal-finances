@@ -9,6 +9,9 @@ public class Expenses {
     private ExpenseType expenseType;
     private Double total;
 
+    public Expenses() {
+    }
+
     public Expenses(String description, Double value, ExpenseType expenseType) {
         this.description = description;
         this.value = value;

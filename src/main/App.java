@@ -3,12 +3,15 @@ package main;
 import model.ExpenseType;
 import model.Expenses;
 import model.Revenues;
+import utils.Utils;
 
 import java.util.*;
 
 public class App {
 
     private static final Scanner input = new Scanner(System.in);
+
+    private static Utils utils = new Utils();
 
     private static final Set<Expenses> expenses = new HashSet<>();
     private static final Set<Revenues> revenues = new HashSet<>();
@@ -33,18 +36,23 @@ public class App {
         switch (action) {
             case 1:
                 registerRevenue();
+                menu();
                 break;
             case 2:
                 registerExpense();
+                menu();
                 break;
             case 3:
                 listRevenues();
+                menu();
                 break;
             case 4:
                 listExpenses();
+                menu();
                 break;
             case 5:
                 listAll();
+                menu();
                 break;
             case 0:
                 exitProgram();
@@ -146,30 +154,27 @@ public class App {
         int index = 0;
         for(Expenses expense : expenses){
             System.out.print("#" + (index + 1) + " - ");
-            System.out.print("Description: " + expense.getDescription() + ", ");
-            System.out.print("US$" + expense.getValue() + ", ");
-            System.out.println("Type: " + expense.getExpenseType());
+            System.out.print(expense.getDescription() + ", ");
+            System.out.print("-US$" + expense.getValue() + ", ");
+            System.out.println(expense.getExpenseType() + ".");
             index++;
         }
-        menu();
     }
 
     private static void listRevenues() {
         System.out.println("\n----- List revenues -----");
         int index = 0;
         for(Revenues revenue : revenues){
-            System.out.println("#" + (index + 1) + " - ");
-            System.out.println("Description: " + revenue.getDescription());
-            System.out.println("Value: " + revenue.getValue());
+            System.out.print("#" + (index + 1) + " - ");;
+            System.out.print(revenue.getDescription() + ", ");
+            System.out.println("+US$" + revenue.getValue());
+            index++;
         }
-        menu();
     }
 
     private static void listAll() {
         System.out.println("\n----- List all -----");
-        System.out.println("Revenues: ");
         listRevenues();
-        System.out.println("\nExpenses: ");
         listExpenses();
         menu();
     }
@@ -180,4 +185,3 @@ public class App {
         System.exit(0);
     }
 }
-
