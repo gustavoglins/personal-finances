@@ -1,6 +1,5 @@
 ## Personal Finances App
 
-Description:
 This is a personal finances app management application, designed to be used in the terminal. With this app, you can register and track your income and expenses in a simple and efficient way. The application was created to help organize your finances and provide a clear overview of your spending and income.
 
 Features:
