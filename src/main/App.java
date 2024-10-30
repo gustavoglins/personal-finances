@@ -3,15 +3,12 @@ package main;
 import model.ExpenseType;
 import model.Expenses;
 import model.Revenues;
-import utils.Utils;
 
 import java.util.*;
 
 public class App {
 
     private static final Scanner input = new Scanner(System.in);
-
-    private static Utils utils = new Utils();
 
     private static final Set<Expenses> expenses = new HashSet<>();
     private static final Set<Revenues> revenues = new HashSet<>();
