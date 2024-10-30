@@ -10,7 +10,7 @@ This is a personal finance management app, designed to be used in the terminal. 
 - List expenses
 - List all transactions
 
-## Project Prewiew
+## Project Preview
 
 ![Project Preview](src/assets/project-preview.png)
 
